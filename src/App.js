@@ -5,7 +5,10 @@ import duckettHTMLCSSBook from "./pdfs/Duckett_HTML_CSS.pdf";
 function App() {
   return (
     <div className="App">
-      <PdfViewer source={duckettHTMLCSSBook} />
+      <PdfViewer
+        source={duckettHTMLCSSBook}
+        title="Duckett HTML CSS Book"
+      />
     </div>
   );
 }

@@ -8,6 +8,7 @@ const PdfViewer = (props) => {
         height: props.height,
         border: "none"
       }}
+      title={props.title}
     />
   )
 }
@@ -15,7 +16,8 @@ const PdfViewer = (props) => {
 PdfViewer.defaultProps = {
   source: "",
   width: "100vw",
-  height: "100vh"
+  height: "100vh",
+  title: "Sample PDF"
 }
 
 export default PdfViewer;
