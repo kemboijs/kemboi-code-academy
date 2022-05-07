@@ -1,84 +1,54 @@
 import { useState } from 'react';
 import './App.css';
-import RenderedPDF from './containers/rendered-pdf';
-import DuckettHTMLCSSBook from "./pdfs/Duckett_HTML_CSS.pdf";
-import CProgramming from "./pdfs/C_Programming.pdf";
-import ProGit from "./pdfs/Pro_Git.pdf";
+import Collapsible from "./collapsible";
+import PathData from "./data/path-data";
 
+const styles = {
+  spacing: {
+    paddingBottom: 10,
+    marginLeft: 10
+  },
+  sectionRow: {
+    display: "flex",
+    flexDirection: "column",
+    margin: 20
+  },
+  button: {
+    padding: 5,
+    marginBottom: 10,
+    cursor: 'pointer'
+  }
+}
 
 const App = () => {
-  const [ active, setActive ] = useState("Duckett_HTML_CSS");
-  console.log({ active })
+  const [collapseIndex, setCollapseIndex] = useState(0);
 
   return (
-    <div
-      className="App"
-      style={{
-        display: 'flex',
-        direction: 'column',
-        backgroundColor: '#f2f2f2',
-        minWidth: '100vw',
-        minHeight: '100vh'
-      }}
-    >
-      <div
-        style={{
-          width: '15vw',
-          backgroundColor: '#d9d9d9',
-          paddingTop: 20,
-          display: 'flex',
-          flexDirection: 'column'
-        }}
-      >
-        <div
-          style={{
-            padding: '5px 0px',
-            margin: '5px 0px',
-            cursor: 'pointer',
-            boxShadow: '0 0 5px #999999'
-          }}
-          onClick={() => setActive("Duckett_HTML_CSS")}
-        >
-          HTML & CSS
+    <div>
+      <h3 style={{ textAlign: 'center', color: 'blueviolet' }}>Welcome To Kemboi Code Academy</h3>
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <div style={{...styles.sectionRow, width: '60vw'}}>
+          <h3>Path (What to know)</h3>
+          <div style={{ display: 'flex', flexDirection: 'column'}}>
+            <Collapsible items={PathData} collapseIndex={collapseIndex} setCollapseIndex={setCollapseIndex} />
+          </div>
         </div>
-        <div
-          style={{
-            padding: '5px 0px',
-            margin: '5px 0px',
-            cursor: 'pointer',
-            boxShadow: '0 0 5px #999999'
-          }}
-          onClick={() => setActive("git")}
-        >
-          Git
+        <div style={{...styles.sectionRow, width: '40vw'}}>
+          <h3>Steps</h3>
+          <a href='' style={{ ...styles.spacing }}>What is Coding</a>
+          <a href='' style={{ ...styles.spacing }}>Introduction to Python</a>
+          <a href='' style={{ ...styles.spacing }}>Introduction to C Programming</a>
+          <a href='' style={{ ...styles.spacing }}>Data Structures & Algorithms</a>
+          <a href='' style={{ ...styles.spacing }}>Basics of Terminal/Command Prompt</a>
+          <a href='' style={{ ...styles.spacing }}>Git & Github</a>
+          <a href='' style={{ ...styles.spacing }}>Learn HTML</a>
+          <a href='' style={{ ...styles.spacing }}>Learn CSS</a>
+          <a href='' style={{ ...styles.spacing }}>Introduction to Javascript</a>
+          <a href='' style={{ ...styles.spacing }}>Dig Deap into Python3</a>
+          <a href='' style={{ ...styles.spacing }}>Dig Deep into Javascript</a>
+          <a href='' style={{ ...styles.spacing }}>Let's Learn Flask</a>
+          <a href='' style={{ ...styles.spacing }}>Let's Learn React</a>
         </div>
-        <div
-          style={{
-            padding: '5px 0px',
-            margin: '5px 0px',
-            cursor: 'pointer',
-            boxShadow: '0 0 5px #999999'
-          }}
-          onClick={() => setActive("C")}
-        >
-          C Programming
-        </div>
-      </div>
-      <div style={{ width: '85vw'}}>
-        {
-          active === 'Duckett_HTML_CSS' ?
-          <RenderedPDF title="Duckett HTML CSS Book" book={DuckettHTMLCSSBook} />
-          :
-          active === 'C'
-          ?
-          <RenderedPDF title="C Programming" book={CProgramming} />
-          :
-          active === 'git'
-          ?
-          <RenderedPDF title="Git" book={ProGit} />
-          :
-          <RenderedPDF title="Duckett HTML CSS Book" book={""} />
-        }
       </div>
     </div>
   );
